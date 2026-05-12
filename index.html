@@ -1,211 +1,396 @@
-
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<title>PPRS - Direitos Humanos Completo</title>
-<style>
-body{
-    font-family: Arial, sans-serif;
-    background:#f5f5f5;
-    margin:0;
-    padding:30px;
-    line-height:1.6;
-}
-.container{
-    max-width:1100px;
-    margin:auto;
-    background:white;
-    padding:40px;
-    border-radius:12px;
-    box-shadow:0 0 10px rgba(0,0,0,0.1);
-}
-h1{
-    text-align:center;
-    color:#003366;
-}
-h2{
-    color:#004c99;
-    border-bottom:2px solid #ddd;
-    padding-bottom:5px;
-    margin-top:35px;
-}
-h3{
-    color:#0066cc;
-    margin-top:25px;
-}
-ul{
-    margin-left:25px;
-}
-li{
-    margin-bottom:6px;
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PPRS — Direitos Humanos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #0f172a;
+      --bg-secondary: #111827;
+      --card: rgba(255,255,255,0.06);
+      --border: rgba(255,255,255,0.08);
+      --text: #f8fafc;
+      --muted: #cbd5e1;
+      --primary: #38bdf8;
+      --secondary: #818cf8;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(56,189,248,0.15), transparent 25%),
+        radial-gradient(circle at bottom right, rgba(129,140,248,0.12), transparent 25%),
+        linear-gradient(135deg, #020617, #0f172a 40%, #111827);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 32px;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: auto;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 18px;
+      border-radius: 999px;
+      background: rgba(56,189,248,0.15);
+      border: 1px solid rgba(56,189,248,0.3);
+      color: #7dd3fc;
+      font-size: 0.9rem;
+      margin-bottom: 18px;
+      backdrop-filter: blur(10px);
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      font-weight: 800;
+      letter-spacing: -2px;
+      background: linear-gradient(90deg, #38bdf8, #818cf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 16px;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1.15rem;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 28px;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      padding: 10px 16px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      backdrop-filter: blur(10px);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 28px;
+      backdrop-filter: blur(16px);
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #38bdf8, #818cf8);
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(56,189,248,0.35);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+    }
+
+    .card h2 {
+      font-size: 1.4rem;
+      color: #7dd3fc;
+      margin-bottom: 18px;
+    }
+
+    .card h3 {
+      color: #c4b5fd;
+      margin-top: 16px;
+      margin-bottom: 8px;
+      font-size: 1rem;
+    }
+
+    ul {
+      margin-left: 20px;
+    }
+
+    li {
+      margin-bottom: 8px;
+      color: #e2e8f0;
+    }
+
+    .study {
+      margin-top: 40px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 35px;
+      backdrop-filter: blur(14px);
+    }
+
+    .study h2 {
+      color: #7dd3fc;
+      margin-bottom: 20px;
+      font-size: 1.8rem;
+    }
+
+    .study ol {
+      margin-left: 22px;
+    }
+
+    .study li {
+      margin-bottom: 10px;
+      color: #f1f5f9;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 50px;
+      color: #94a3b8;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 20px;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+    }
+  </style>
 </head>
 <body>
+
 <div class="container">
 
-<h1>PPRS - Direitos Humanos, Sociedade e Grupos Vulnerabilizados</h1>
+  <section class="hero">
+    <div class="badge">PPRS 2026 • Direitos Humanos</div>
+    <h1>Direitos Humanos</h1>
+    <p>
+      Sociedade e Grupos Vulnerabilizados — conteúdo organizado em formato moderno para revisão,
+      leitura rápida e preparação para a prova da Polícia Penal do Rio Grande do Sul.
+    </p>
 
-<h2>1. Teoria Geral dos Direitos Humanos</h2>
+    <div class="topbar">
+      <div class="pill">📚 Edital Organizado</div>
+      <div class="pill">⚖️ Direitos Fundamentais</div>
+      <div class="pill">🏛️ Sistema Prisional</div>
+      <div class="pill">🧠 Revisão Estratégica</div>
+    </div>
+  </section>
 
-<h3>1.1 Conceito de Direitos Humanos</h3>
-<ul>
-<li>Conceito</li>
-<li>Finalidade</li>
-<li>Universalidade</li>
-<li>Dignidade da pessoa humana</li>
-</ul>
+  <div class="grid">
 
-<h3>1.2 Classificação dos Direitos Humanos</h3>
-<ul>
-<li>Direitos de 1ª geração (liberdade)</li>
-<li>Direitos de 2ª geração (igualdade)</li>
-<li>Direitos de 3ª geração (fraternidade/solidariedade)</li>
-<li>Direitos de 4ª e 5ª geração</li>
-</ul>
+    <div class="card">
+      <h2>1. Teoria Geral dos Direitos Humanos</h2>
 
-<h3>1.3 Características dos Direitos Humanos</h3>
-<ul>
-<li>Universalidade</li>
-<li>Historicidade</li>
-<li>Irrenunciabilidade</li>
-<li>Inalienabilidade</li>
-<li>Imprescritibilidade</li>
-<li>Indivisibilidade</li>
-<li>Interdependência</li>
-</ul>
+      <h3>Conceito</h3>
+      <ul>
+        <li>Universalidade</li>
+        <li>Dignidade da pessoa humana</li>
+        <li>Finalidade dos direitos humanos</li>
+      </ul>
 
-<h2>2. Sistema Internacional de Direitos Humanos</h2>
+      <h3>Classificação</h3>
+      <ul>
+        <li>1ª geração — liberdade</li>
+        <li>2ª geração — igualdade</li>
+        <li>3ª geração — fraternidade</li>
+        <li>4ª e 5ª gerações</li>
+      </ul>
 
-<h3>2.1 Sistema Global (ONU)</h3>
-<ul>
-<li>Organização das Nações Unidas</li>
-<li>Declaração Universal dos Direitos Humanos</li>
-<li>Tratados internacionais</li>
-</ul>
+      <h3>Características</h3>
+      <ul>
+        <li>Historicidade</li>
+        <li>Irrenunciabilidade</li>
+        <li>Inalienabilidade</li>
+        <li>Imprescritibilidade</li>
+        <li>Interdependência</li>
+      </ul>
+    </div>
 
-<h3>2.2 Sistema Interamericano</h3>
-<ul>
-<li>OEA</li>
-<li>Comissão Interamericana de Direitos Humanos</li>
-<li>Corte Interamericana de Direitos Humanos</li>
-</ul>
+    <div class="card">
+      <h2>2. Sistema Internacional</h2>
+      <ul>
+        <li>ONU</li>
+        <li>Declaração Universal dos Direitos Humanos</li>
+        <li>Tratados internacionais</li>
+        <li>OEA</li>
+        <li>Comissão Interamericana</li>
+        <li>Corte Interamericana</li>
+        <li>Direitos Humanos na CF/88</li>
+      </ul>
+    </div>
 
-<h3>2.3 Direitos Humanos na Constituição Federal de 1988</h3>
-<ul>
-<li>Dignidade da pessoa humana</li>
-<li>Direitos e garantias fundamentais</li>
-<li>Artigo 5º da Constituição Federal</li>
-<li>Tratados internacionais de direitos humanos</li>
-</ul>
+    <div class="card">
+      <h2>3. Políticas Públicas</h2>
+      <ul>
+        <li>PNDH-3</li>
+        <li>Agenda 2030</li>
+        <li>ODS</li>
+        <li>Inclusão social</li>
+        <li>Sustentabilidade</li>
+      </ul>
+    </div>
 
-<h2>3. Políticas Públicas e Direitos Humanos</h2>
-<ul>
-<li>Programa Nacional de Direitos Humanos - PNDH-3</li>
-<li>Agenda 2030</li>
-<li>Objetivos de Desenvolvimento Sustentável (ODS)</li>
-</ul>
+    <div class="card">
+      <h2>4. Sistema Prisional</h2>
+      <ul>
+        <li>Regras de Mandela</li>
+        <li>Convenção Contra a Tortura</li>
+        <li>Lei nº 12.847/2013</li>
+        <li>Lei nº 9.455/1997</li>
+        <li>Execução penal</li>
+        <li>Reintegração social</li>
+      </ul>
+    </div>
 
-<h2>4. Direitos Humanos no Sistema Prisional</h2>
-<ul>
-<li>Regras de Mandela</li>
-<li>Convenção Contra a Tortura</li>
-<li>Lei nº 12.847/2013</li>
-<li>Lei nº 9.455/1997</li>
-<li>Sistema prisional brasileiro</li>
-<li>Reintegração social</li>
-<li>Segurança pública</li>
-</ul>
+    <div class="card">
+      <h2>5. Mulheres</h2>
+      <ul>
+        <li>Lei Maria da Penha</li>
+        <li>Violência doméstica</li>
+        <li>Violência psicológica</li>
+        <li>Violência patrimonial</li>
+        <li>Regras de Bangkok</li>
+      </ul>
+    </div>
 
-<h2>5. Direitos Humanos e Grupos Vulnerabilizados</h2>
+    <div class="card">
+      <h2>6. População Negra</h2>
+      <ul>
+        <li>Racismo estrutural</li>
+        <li>Racismo institucional</li>
+        <li>Criminalização</li>
+        <li>Ações afirmativas</li>
+        <li>Estatuto da Igualdade Racial</li>
+        <li>Lei nº 7.716/1989</li>
+      </ul>
+    </div>
 
-<h3>5.1 Mulheres</h3>
-<ul>
-<li>Lei Maria da Penha</li>
-<li>Violência doméstica e familiar</li>
-<li>Formas de violência contra a mulher</li>
-<li>Regras de Bangkok</li>
-</ul>
+    <div class="card">
+      <h2>7. Pessoa Idosa</h2>
+      <ul>
+        <li>Estatuto da Pessoa Idosa</li>
+        <li>Proteção integral</li>
+        <li>Prioridade de atendimento</li>
+      </ul>
+    </div>
 
-<h3>5.2 População Negra</h3>
-<ul>
-<li>Racismo individual</li>
-<li>Racismo institucional</li>
-<li>Racismo estrutural</li>
-<li>Criminalização da população negra</li>
-<li>Encarceramento e letalidade policial</li>
-<li>Ações afirmativas</li>
-<li>Estatuto da Igualdade Racial</li>
-<li>Lei nº 7.716/1989</li>
-<li>Lei nº 14.532/2023</li>
-</ul>
+    <div class="card">
+      <h2>8. Pessoa com Deficiência</h2>
+      <ul>
+        <li>Lei nº 13.146/2015</li>
+        <li>Acessibilidade</li>
+        <li>Inclusão social</li>
+        <li>Capacitismo</li>
+      </ul>
+    </div>
 
-<h3>5.3 Pessoa Idosa</h3>
-<ul>
-<li>Estatuto da Pessoa Idosa</li>
-<li>Medidas de proteção</li>
-</ul>
+    <div class="card">
+      <h2>9. População LGBTQIAPN+</h2>
+      <ul>
+        <li>Princípios de Yogyakarta</li>
+        <li>Nome social</li>
+        <li>Identidade de gênero</li>
+        <li>Violência e discriminação</li>
+      </ul>
+    </div>
 
-<h3>5.4 Pessoa com Deficiência</h3>
-<ul>
-<li>Estatuto da Pessoa com Deficiência</li>
-<li>Acessibilidade</li>
-<li>Inclusão social</li>
-<li>Capacitismo</li>
-</ul>
+    <div class="card">
+      <h2>10. Situação de Rua</h2>
+      <ul>
+        <li>Decreto nº 7.053/2009</li>
+        <li>Políticas públicas</li>
+        <li>Proteção social</li>
+      </ul>
+    </div>
 
-<h3>5.5 População LGBTQIAPN+</h3>
-<ul>
-<li>Violência contra população LGBTQIAPN+</li>
-<li>Princípios de Yogyakarta</li>
-<li>Resolução Conjunta nº 01/2014</li>
-<li>Nome social</li>
-<li>Retificação de registro civil</li>
-</ul>
+    <div class="card">
+      <h2>11. Saúde Mental</h2>
+      <ul>
+        <li>Lei nº 10.216/2001</li>
+        <li>Política antimanicomial</li>
+        <li>Resolução nº 487/2023</li>
+      </ul>
+    </div>
 
-<h3>5.6 Pessoa em Situação de Rua</h3>
-<ul>
-<li>Decreto nº 7.053/2009</li>
-<li>Política Nacional para População em Situação de Rua</li>
-</ul>
+    <div class="card">
+      <h2>12. Conceitos Fundamentais</h2>
+      <ul>
+        <li>Discriminação</li>
+        <li>Sexismo</li>
+        <li>Etarismo</li>
+        <li>Intolerância religiosa</li>
+        <li>Aporofobia</li>
+        <li>Psicofobia</li>
+        <li>Capacitismo</li>
+      </ul>
+    </div>
 
-<h3>5.7 Pessoa com Transtorno Mental</h3>
-<ul>
-<li>Lei nº 10.216/2001</li>
-<li>Política antimanicomial</li>
-<li>Resolução nº 487/2023 - CNJ</li>
-</ul>
+  </div>
 
-<h2>6. Conceitos Fundamentais</h2>
-<ul>
-<li>Discriminação</li>
-<li>Racismo</li>
-<li>Sexismo</li>
-<li>Etarismo</li>
-<li>Intolerância Religiosa</li>
-<li>LGBTQIAPN+fobia</li>
-<li>Aporofobia</li>
-<li>Psicofobia</li>
-<li>Capacitismo</li>
-</ul>
+  <section class="study">
+    <h2>📚 Ordem Recomendada de Estudo</h2>
 
-<h2>7. Sugestão de Ordem de Estudo</h2>
-<ol>
-<li>Teoria Geral dos Direitos Humanos</li>
-<li>Constituição Federal e Sistema Internacional</li>
-<li>Tortura e Regras de Mandela</li>
-<li>Sistema prisional brasileiro</li>
-<li>Lei Maria da Penha</li>
-<li>Igualdade racial e racismo</li>
-<li>Estatuto da Pessoa Idosa</li>
-<li>Estatuto da Pessoa com Deficiência</li>
-<li>População LGBTQIAPN+</li>
-<li>Pessoa em situação de rua</li>
-<li>Saúde mental e política antimanicomial</li>
-<li>Conceitos fundamentais de discriminação</li>
-</ol>
+    <ol>
+      <li>Teoria Geral dos Direitos Humanos</li>
+      <li>Constituição Federal + Sistema Internacional</li>
+      <li>Tortura + Regras de Mandela</li>
+      <li>Sistema prisional brasileiro</li>
+      <li>Lei Maria da Penha</li>
+      <li>Igualdade racial + racismo</li>
+      <li>Estatuto da Pessoa Idosa</li>
+      <li>Estatuto da Pessoa com Deficiência</li>
+      <li>População LGBTQIAPN+</li>
+      <li>Pessoa em situação de rua</li>
+      <li>Saúde mental</li>
+      <li>Conceitos fundamentais</li>
+    </ol>
+  </section>
+
+  <div class="footer">
+    PPRS 2026 • Material organizado para revisão estratégica
+  </div>
 
 </div>
+
 </body>
 </html>
