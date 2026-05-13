@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PPRS — Sistema Prisional</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #020617;
+      --card: rgba(255,255,255,0.05);
+      --border: rgba(255,255,255,0.08);
+      --text: #f8fafc;
+      --muted: #cbd5e1;
+      --primary: #38bdf8;
+      --secondary: #818cf8;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(56,189,248,0.12), transparent 25%),
+        radial-gradient(circle at bottom right, rgba(129,140,248,0.12), transparent 25%),
+        linear-gradient(135deg, #020617, #0f172a 50%, #111827);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 32px;
+    }
+
+/* MENU */
+.main-nav {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 18px 24px;
+  margin-bottom: 40px;
+
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 22px;
+
+  backdrop-filter: blur(16px);
+
+  position: sticky;
+  top: 15px;
+  z-index: 1000;
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+
+.nav-logo {
+  font-size: 1.2rem;
+  font-weight: 800;
+  background: linear-gradient(90deg,#38bdf8,#818cf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  white-space: nowrap;
+}
+
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #e2e8f0;
+  padding: 10px 16px;
+  border-radius: 14px;
+  transition: all 0.25s ease;
+  font-size: 0.95rem;
+
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+.nav-links a:hover {
+  background: linear-gradient(90deg,#0ea5e9,#6366f1);
+  color: white;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 900px) {
+  .main-nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-links {
+    width: 100%;
+  }
+}
+
+    .container {
+      max-width: 1450px;
+      margin: auto;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 18px;
+      border-radius: 999px;
+      background: rgba(56,189,248,0.12);
+      border: 1px solid rgba(56,189,248,0.3);
+      color: #7dd3fc;
+      margin-bottom: 18px;
+      font-size: 0.9rem;
+      backdrop-filter: blur(10px);
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      font-weight: 800;
+      background: linear-gradient(90deg,#38bdf8,#818cf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 16px;
+      letter-spacing: -2px;
+    }
+
+    .hero p {
+      color: var(--muted);
+      max-width: 900px;
+      margin: auto;
+      font-size: 1.1rem;
+      line-height: 1.7;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 28px;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      padding: 10px 16px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      backdrop-filter: blur(10px);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 28px;
+      backdrop-filter: blur(16px);
+      transition: all 0.3s ease;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg,#38bdf8,#818cf8);
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(56,189,248,0.35);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+    }
+
+    .card h2 {
+      color: #7dd3fc;
+      margin-bottom: 18px;
+      font-size: 1.4rem;
+    }
+
+    .card h3 {
+      color: #c4b5fd;
+      margin-top: 16px;
+      margin-bottom: 10px;
+      font-size: 1rem;
+    }
+
+    ul {
+      margin-left: 20px;
+    }
+
+    li {
+      margin-bottom: 8px;
+      color: #e2e8f0;
+      line-height: 1.6;
+    }
+
+    .study {
+      margin-top: 42px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 35px;
+      backdrop-filter: blur(14px);
+    }
+
+    .study h2 {
+      color: #7dd3fc;
+      margin-bottom: 18px;
+      font-size: 1.8rem;
+    }
+
+    .study ol {
+      margin-left: 22px;
+    }
+
+    .study li {
+      margin-bottom: 10px;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 50px;
+      color: #94a3b8;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 20px;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- MENU GLOBAL -->
+<nav class="main-nav">
+  <div class="nav-logo">PPRS 2026</div>
+
+  <div class="nav-links">
+    <a href="index.html">🏠 Início</a>
+    <a href="portugues.html">📖 Português</a>
+    <a href="informatica.html">💻 Informática</a>
+    <a href="rlm.html">🧠 Raciocínio Lógico</a>
+    <a href="direitos humanos.html">⚖️ Direitos Humanos</a>
+    <a href="direito constitucional e legislacao.html">🏛️ Direito</a>
+    <a href="conhecimento geral relativo ao sistema prisional.html">🛡️ Sistema Prisional</a>
+  </div>
+</nav>
+
+
+
+<div class="container">
+
+  <section class="hero">
+    <div class="badge">PPRS 2026 • Sistema Prisional</div>
+    <h1>Conhecimentos do Sistema Prisional</h1>
+    <p>
+      Conteúdo completo sobre estrutura, legislação e funcionamento do sistema prisional,
+      organizado em formato moderno para revisão estratégica da Polícia Penal do Rio Grande do Sul.
+    </p>
+
+    <div class="topbar">
+      <div class="pill">🏛️ Sistema Prisional</div>
+      <div class="pill">⚖️ LEP</div>
+      <div class="pill">🛡️ Polícia Penal</div>
+      <div class="pill">📚 Legislação Estadual</div>
+    </div>
+  </section>
+
+  <div class="grid">
+
+    <div class="card">
+      <h2>1. Estrutura do Sistema Prisional</h2>
+
+      <ul>
+        <li>Conceito do sistema prisional</li>
+        <li>Objetivos da execução penal</li>
+        <li>Segurança e disciplina</li>
+        <li>Ressocialização do apenado</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>2. Estabelecimentos Prisionais</h2>
+
+      <ul>
+        <li>Penitenciárias</li>
+        <li>Casas de detenção</li>
+        <li>Centros de recuperação</li>
+        <li>Unidades de internação</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>3. Regimes de Pena</h2>
+
+      <ul>
+        <li>Regime fechado</li>
+        <li>Regime semiaberto</li>
+        <li>Regime aberto</li>
+        <li>Classificação dos detentos</li>
+        <li>Gravidade do crime</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>4. Administração Prisional</h2>
+
+      <ul>
+        <li>Organização administrativa</li>
+        <li>Gestão penitenciária</li>
+        <li>Papel da Polícia Penal</li>
+        <li>Segurança interna</li>
+        <li>Custódia de presos</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>5. Constituição Federal</h2>
+
+      <ul>
+        <li>Direitos fundamentais do detento</li>
+        <li>Princípio da dignidade da pessoa humana</li>
+        <li>Integridade física e moral</li>
+        <li>Garantias constitucionais</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>6. Lei de Execução Penal</h2>
+
+      <ul>
+        <li>Lei nº 7.210/1984</li>
+        <li>Execução da pena</li>
+        <li>Direitos e deveres do preso</li>
+        <li>Assistência ao preso</li>
+        <li>Classificação penitenciária</li>
+      </ul>
+
+      <h3>Ressocialização</h3>
+      <ul>
+        <li>Trabalho prisional</li>
+        <li>Estudo no sistema prisional</li>
+        <li>Remição de pena</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>7. Estatuto da Polícia Penal</h2>
+
+      <ul>
+        <li>Lei Complementar nº 16.449/2025</li>
+        <li>Estrutura da Polícia Penal</li>
+        <li>Direitos e deveres funcionais</li>
+        <li>Carreira policial penal</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>8. Remoção de Servidores</h2>
+
+      <ul>
+        <li>Decreto Estadual nº 57.389/2023</li>
+        <li>Regras de remoção</li>
+        <li>Movimentação funcional</li>
+        <li>Critérios administrativos</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>9. Visitas e Materiais</h2>
+
+      <ul>
+        <li>IN nº 014/2023 GAB/SUP</li>
+        <li>Ingresso de visitantes</li>
+        <li>Controle de materiais</li>
+        <li>Segurança prisional</li>
+        <li>Fiscalização de entrada</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>10. Diárias e Viagens</h2>
+
+      <ul>
+        <li>IN nº 019/2023 GAB/SUP</li>
+        <li>Pagamento de diárias</li>
+        <li>Procedimentos administrativos</li>
+        <li>Deslocamentos funcionais</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>11. Material Bélico</h2>
+
+      <ul>
+        <li>IN nº 001/2024 GAB/SUP</li>
+        <li>Controle de armamentos</li>
+        <li>Uso de material bélico</li>
+        <li>Responsabilidade funcional</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>12. Televisitas</h2>
+
+      <ul>
+        <li>IN nº 001/2025 GAB/SUP</li>
+        <li>Procedimentos de televisitas</li>
+        <li>Comunicação virtual</li>
+        <li>Regras operacionais</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>13. Patrimônio e Inventário</h2>
+
+      <ul>
+        <li>IN nº 002/2026 GAB/SUP</li>
+        <li>Inventário patrimonial</li>
+        <li>Guarda de bens</li>
+        <li>Movimentação patrimonial</li>
+        <li>Baixa de bens</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <section class="study">
+    <h2>📚 Ordem Recomendada de Estudo</h2>
+
+    <ol>
+      <li>Estrutura do sistema prisional</li>
+      <li>Tipos de estabelecimentos</li>
+      <li>Regimes de pena</li>
+      <li>Papel da Polícia Penal</li>
+      <li>Direitos fundamentais do preso</li>
+      <li>Lei de Execução Penal</li>
+      <li>Estatuto da Polícia Penal</li>
+      <li>Normas estaduais e instruções normativas</li>
+      <li>Rotinas administrativas e operacionais</li>
+    </ol>
+  </section>
+
+  <div class="footer">
+    PPRS 2026 • Conhecimentos do Sistema Prisional • Material organizado para revisão estratégica
+  </div>
+
+</div>
+
+</body>
+</html>
