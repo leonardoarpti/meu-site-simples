@@ -37,6 +37,38 @@
       min-height: 100vh;
       padding: 32px;
     }
+	
+	.chart-section {
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
+
+.chart-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 30px;
+  padding: 40px;
+
+  backdrop-filter: blur(16px);
+
+  box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+
+  text-align: center;
+}
+
+.chart-card h2 {
+  color: #7dd3fc;
+  margin-bottom: 30px;
+  font-size: 2rem;
+}
+
+#graficoMaterias {
+		max-width: 500px;
+		max-height: 500px;
+
+		margin: 0 auto;
+}
+
 
 /* MENU */
 .main-nav {
@@ -149,6 +181,7 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 22px;
+	  margin-top: 30px;
       margin-bottom: 50px;
     }
 
@@ -292,38 +325,6 @@
     </p>
   </section>
 
-  <section class="cards">
-
-    <div class="info-card">
-      <h2>📚 Total de Questões</h2>
-      <p>
-        A prova objetiva possui <strong>80 questões</strong>, distribuídas entre cinco componentes curriculares.
-      </p>
-    </div>
-
-    <div class="info-card">
-      <h2>🎯 Pontuação</h2>
-      <p>
-        Cada questão vale <strong>1,25 ponto</strong>, totalizando <strong>100 pontos</strong> na prova.
-      </p>
-    </div>
-
-    <div class="info-card">
-      <h2>✅ Aprovação</h2>
-      <p>
-        É necessário atingir no mínimo <strong>50 pontos</strong> no total e os mínimos por componente.
-      </p>
-    </div>
-
-    <div class="info-card">
-      <h2>🛡️ Cargo</h2>
-      <p>
-        O quadro demonstrativo refere-se ao cargo de <strong>Policial Penal</strong> da PPRS.
-      </p>
-    </div>
-
-  </section>
-
   <section class="table-wrapper">
 
     <div class="table-title">
@@ -386,11 +387,178 @@
 
   </section>
 
+
+<section class="chart-section">
+
+  <div class="chart-card">
+
+    <h2>📊 Distribuição das Questões</h2>
+
+    <canvas id="graficoMaterias"></canvas>
+
+  </div>
+
+</section>
+
+<section class="cards">
+
+	<div class="info-card">
+	  <h2>📅 Contagem Regressiva</h2>
+
+	  <p>
+		<strong>FALTAM:</strong><br>
+		<span id="dias-prova" class="highlight" style="font-size: 1.5rem;">
+		  ...
+		</span>
+	  </p>
+	</div>
+
+	<div class="info-card">
+		<h2>📅 Data da Prova</h2>
+
+		<p>
+		<strong>DATA:</strong>
+		<span class="highlight">09/08/2026</span>
+		<br><br>
+
+		<strong>LOCAL:</strong>
+		Porto Alegre
+	  </p>
+	</div>
+
+    <div class="info-card">
+      <h2>📚 Total de Questões</h2>
+      <p>
+        A prova objetiva possui <strong>80 questões</strong>, distribuídas entre cinco componentes curriculares.
+      </p>
+    </div>
+
+    <div class="info-card">
+      <h2>🎯 Pontuação</h2>
+      <p>
+        Cada questão vale <strong>1,25 ponto</strong>, totalizando <strong>100 pontos</strong> na prova.
+      </p>
+    </div>
+
+    <div class="info-card">
+      <h2>✅ Aprovação</h2>
+      <p>
+        É necessário atingir no mínimo <strong>50 pontos</strong> no total e os mínimos por componente.
+      </p>
+    </div>
+
+    <div class="info-card">
+      <h2>🛡️ Cargo</h2>
+      <p>
+        O quadro demonstrativo refere-se ao cargo de <strong>Policial Penal</strong> da PPRS.
+      </p>
+    </div>
+
+  </section>
+
   <div class="footer">
     PPRS 2026 • Página Inicial do Plano de Estudos • Polícia Penal do Rio Grande do Sul
   </div>
 
 </div>
+
+
+
+<script>
+  const dataProva = new Date("2026-08-09T00:00:00");
+  const hoje = new Date();
+
+  const diferenca = dataProva - hoje;
+
+  const dias = Math.ceil(
+    diferenca / (1000 * 60 * 60 * 24)
+  );
+
+  const elemento = document.getElementById("dias-prova");
+
+  if (dias > 0) {
+    elemento.innerHTML = dias + " dias";
+  } else if (dias === 0) {
+    elemento.innerHTML = "É HOJE!";
+  } else {
+    elemento.innerHTML = "Prova encerrada";
+  }
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+const ctx = document.getElementById('graficoMaterias');
+
+new Chart(ctx, {
+    type: 'doughnut',
+
+    data: {
+        labels: [
+            'Português',
+            'Informática',
+            'Raciocínio Lógico',
+            'Legislação/Direito',
+            'Sistema Prisional'
+        ],
+
+        datasets: [{
+            label: 'Quantidade de Questões',
+
+            data: [20, 20, 10, 30, 10],
+
+            backgroundColor: [
+                '#38bdf8',
+                '#6366f1',
+                '#22c55e',
+                '#f59e0b',
+                '#ef4444'
+            ],
+
+            borderWidth: 0
+        }]
+    },
+
+    options: {
+
+        responsive: true,
+
+        plugins: {
+
+            legend: {
+                position: 'bottom',
+
+                labels: {
+                    color: '#e2e8f0',
+                    padding: 20,
+                    font: {
+                        size: 14
+                    }
+                }
+            },
+
+            tooltip: {
+                callbacks: {
+                    label: function(context) {
+
+                        const total = context.dataset.data.reduce((a,b)=>a+b,0);
+
+                        const value = context.raw;
+
+                        const percentage =
+                          ((value / total) * 100).toFixed(1);
+
+                        return value + ' questões (' + percentage + '%)';
+                    }
+                }
+            }
+        },
+
+        cutout: '60%'
+    }
+});
+
+</script>
 
 </body>
 </html>
